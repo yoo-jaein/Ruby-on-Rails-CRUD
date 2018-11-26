@@ -1,0 +1,15 @@
+<div class="container">
+    <form action="/post/create" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">제목</label>
+        <input name="input_title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="제목을 입력하세요.">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">내용</label>
+        <textarea name="input_content" class="form-control" id="exampleFormControlTextarea1" rows="15"></textarea>
+      </div>
+      <input name="image" type="file" accept="image/*">
+      <button type="submit" class="btn btn-info">작성하기</button>
+    </form>
+</div>

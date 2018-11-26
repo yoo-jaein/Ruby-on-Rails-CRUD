@@ -1,0 +1,77 @@
+<%= render "navbar" %>
+<div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">제목</th>
+          <th scope="col">작성자</th>
+          <th scope="col">작성시간</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% @post.each do |p| %>  
+            <tr>
+              <th scope="row"><%= p.id %></th>
+              <td><a href="/post/show/<%= p.id %>"><%= p.title %></a></td>
+              <td><%= p.user.email %></td>
+              <td><%= p.created_at %></td>
+            </tr>
+        <% end %>
+      </tbody>
+      
+    </table>
+    <a href="/post/new">
+        <button type="button" class="btn btn-dark">글쓰기</button>
+    </a>
+
+<% @post.each do |p| %>
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://ae01.alicdn.com/kf/HTB1G8ekOVXXXXa7aXXXq6xXFXXXV/Game-Teemo-PVC-Action-figure-High-quality-Collectible-Model-Toys-Christmas-gift-IN-STOCK.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><a href="/post/show/<%= p.id %>"><%= p.title %></a></h5>
+      <p class="card-text"><%= p.id %></p>
+      <a href="#" class="btn btn-primary"><%= p.user.email %></a>
+      <div><%= p.created_at %></div>
+    </div>
+  </div>
+<% end %>
+
+<div id="enters"></div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script>
+
+    var count = 4;
+    var stringTemp = "";
+    
+    function call(){
+      $.ajax({
+        type:"get",
+        url:"/post/ajaxCall",
+        data:{"count" : count},
+        dataType:"json",
+        success: function(data){
+          alert(data);
+        },
+        error: function(error){
+          alert(error);
+        }
+      });
+    }
+
+    var page = 1;
+
+  window.onscroll = function(ev) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        // $("#enters").append("<h1>Page</h1> " + page);
+        call();
+    }
+};
+</script>

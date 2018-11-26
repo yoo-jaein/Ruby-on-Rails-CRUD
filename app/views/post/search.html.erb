@@ -1,0 +1,26 @@
+<%= render "navbar" %>
+<div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">제목</th>
+          <th scope="col">작성자</th>
+          <th scope="col">작성시간</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post.each do |p| %>  
+            <tr>
+              <th scope="row"><%= p.id %></th>
+              <td><a href="/post/show/<%= p.id %>"><%= p.title %></a></td>
+              <td><%= p.user.email %></td>
+              <td><%= p.created_at %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <a href="/post/new">
+        <button type="button" class="btn btn-dark">글쓰기</button>
+    </a>
+</div>
